@@ -26,16 +26,16 @@ from google.cloud.storage import Blob
 # [START create_app]
 app = Flask(__name__)
 key = 'brtJUWneL92g5q0N2gyDSnlPSYAiIy0='
-bucket_name = 'gcpcloudbucket'
-pic_bucket = 'gcpbatpicbucket'
-other_bucket = 'gcpbatothersbucket'
+bucket_name = 'your-bucket-name'
+pic_bucket = 'your-pics-bucket-name'
+other_bucket = 'your-other-bucket-name'
 # [END create_app]
 
 
 
 @app.route('/')
 def index():
-    return """<h1>Parth Desai 1001421306</h1><form method="POST" action="/upload" enctype="multipart/form-data">
+    return """<h1>Parth Desai </h1><form method="POST" action="/upload" enctype="multipart/form-data">
     <input type="file" name="file">
     <input type="submit">
 	</form>
@@ -173,33 +173,7 @@ def deletefile():
     blob = bucket.blob(request.form['deletefilename'])
     blob.delete()
     return "File deleted suceesfully"    
-    
-    
 
-# [START form]
-@app.route('/form')
-def form():
-    return render_template('form.html')
-# [END form]
-
-
-# [START submitted]
-@app.route('/submitted', methods=['POST'])
-def submitted_form():
-    name = request.form['name']
-    email = request.form['email']
-    site = request.form['site_url']
-    comments = request.form['comments']
-
-    # [END submitted]
-    # [START render_template]
-    return render_template(
-        'submitted_form.html',
-        name=name,
-        email=email,
-        site=site,
-        comments=comments)
-    # [END render_template]
 
 
 @app.errorhandler(500)
